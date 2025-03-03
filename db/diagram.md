@@ -1,1 +1,1 @@
-![Database diagram](hoop_booking_diagram.png)
+![Database diagram](db.pgerd.png)
