@@ -52,18 +52,18 @@ CREATE TABLE IF NOT EXISTS public.favorites
 CREATE TABLE IF NOT EXISTS public.player_friends
 (
     player_id integer NOT NULL,
-    firend_id integer NOT NULL,
+    friend_id integer NOT NULL,
     friendship_date date NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS public.court_reviews
 (
     review_id serial NOT NULL,
-    cort_id integer NOT NULL,
+    court_id integer NOT NULL,
     player_id integer NOT NULL,
-    rating integer NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    rating integer NOT NULL,
     review_text text,
-    rewiew_date date,
+    review_date date,
     PRIMARY KEY (review_id)
 );
 
