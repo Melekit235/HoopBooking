@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteDaoImpl implements FavoriteDao {
-    private Connection connection;
+    private final Connection connection;
 
     public FavoriteDaoImpl(Connection connection) {
         this.connection = connection;

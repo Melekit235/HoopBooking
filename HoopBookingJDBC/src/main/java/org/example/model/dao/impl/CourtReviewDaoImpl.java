@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourtReviewDaoImpl implements CourtReviewDao {
-    private Connection connection;
+    private final Connection connection;
 
     public CourtReviewDaoImpl(Connection connection) {
         this.connection = connection;

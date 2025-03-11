@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerDaoImpl implements PlayerDao {
-    private Connection connection;
+    private final Connection connection;
 
     public PlayerDaoImpl(Connection connection) {
         this.connection = connection;

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourtDaoImpl implements CourtDao {
-    private Connection connection;
+    private final Connection connection;
 
     public CourtDaoImpl(Connection connection) {
         this.connection = connection;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerArrivalDaoImpl implements PlayerArrivalDao {
-    private Connection connection;
+    private final Connection connection;
 
     public PlayerArrivalDaoImpl(Connection connection) {
         this.connection = connection;
