@@ -1,53 +1,87 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Вход и регистрация</title>
-    <script>
-        function toggleForm() {
-            var loginForm = document.getElementById('loginForm');
-            var registerForm = document.getElementById('registerForm');
-            var toggleButton = document.getElementById('toggleButton');
+    <title>Вход</title>
+    <!-- Подключаем внешний CSS файл -->
+    <link rel="stylesheet" href="/css/login.css">
 
-            if (loginForm.style.display === 'none') {
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
-                toggleButton.textContent = 'Перейти к регистрации';
-            } else {
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
-                toggleButton.textContent = 'Перейти к входу';
-            }
-        }
-    </script>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h2 {
+        margin-top: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+
+    label {
+        margin-top: 10px;
+    }
+
+    input {
+        padding: 5px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 250px;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    a {
+        margin-top: 20px;
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    p {
+        margin-top: 20px;
+        color: red;
+    }
+
+    </style>
+
 </head>
 <body>
     <h2>Вход</h2>
-    <div id="loginForm">
-        <form action="login" method="post">
-            <label>Email:</label> <input type="email" name="email" required><br>
-            <label>Пароль:</label> <input type="password" name="password" required><br>
-            <button type="submit">Войти</button>
-        </form>
-    </div>
-
-    <h2>Регистрация</h2>
-    <div id="registerForm" style="display: none;">
-        <form action="register" method="post">
-            <label>Имя:</label> <input type="text" name="firstName" required><br>
-            <label>Фамилия:</label> <input type="text" name="lastName" required><br>
-            <label>Email:</label> <input type="email" name="email" required><br>
-            <label>Пароль:</label> <input type="password" name="password" required><br>
-            <button type="submit">Зарегистрироваться</button>
-        </form>
-    </div>
-
-    <button id="toggleButton" onclick="toggleForm()">Перейти к регистрации</button>
+    <form action="login" method="post">
+        <label>Email:</label> <input type="email" name="email" required><br>
+        <label>Пароль:</label> <input type="password" name="password" required><br>
+        <button type="submit">Войти</button>
+    </form>
+    <p><a th:href="@{/register}">Нет аккаунта? Зарегистрироваться</a></p>
 
     <c:if test="${not empty message}">
-        <p style="color: red;">${message}</p>
+        <p>${message}</p>
     </c:if>
 </body>
 </html>

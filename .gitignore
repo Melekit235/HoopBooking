@@ -27,3 +27,6 @@ HoopBokingSpringBoot/.idea/
 /HoopBokingSpringBoot/.idea
 /HoopBokingSpringBoot/backend/.gradle
 /HoopBokingSpringBoot/backend/build/tmp/compileJava
+/HoopBokingSpringBoot/backend/.mvn
+/.mvn
+/HoopBokingSpringBoot/backend/build
