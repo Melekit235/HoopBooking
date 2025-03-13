@@ -18,31 +18,26 @@ public class CourtTypeService {
         this.courtTypeRepository = courtTypeRepository;
     }
 
-    // Метод для получения всех типов кортов
     public List<CourtType> getAllCourtTypes() {
         return courtTypeRepository.findAll();
     }
 
-    // Метод для получения типа корта по ID
     public Optional<CourtType> getCourtTypeById(Integer typeId) {
         return courtTypeRepository.findById(typeId);
     }
 
-    // Метод для добавления нового типа корта
     public CourtType addCourtType(CourtType courtType) {
         return courtTypeRepository.save(courtType);
     }
 
-    // Метод для обновления типа корта
     public CourtType updateCourtType(Integer typeId, CourtType courtTypeDetails) {
         if (courtTypeRepository.existsById(typeId)) {
-            courtTypeDetails.setTypeId(typeId); // Устанавливаем ID для обновления
+            courtTypeDetails.setTypeId(typeId);
             return courtTypeRepository.save(courtTypeDetails);
         }
-        return null; // Или выбросить исключение, если тип корта не найден
+        return null;
     }
 
-    // Метод для удаления типа корта по ID
     public void deleteCourtType(Integer typeId) {
         courtTypeRepository.deleteById(typeId);
     }

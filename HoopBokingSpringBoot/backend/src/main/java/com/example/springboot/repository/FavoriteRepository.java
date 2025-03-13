@@ -11,11 +11,9 @@ import java.util.List;
 @Repository
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
-    // Метод для получения всех фаворитов для определенного игрока
+
     List<Favorite> findByPlayer(Player player);
 
-    // Метод для получения всех фаворитов для определенной площадки
     List<Favorite> findByCourt(Court court);
 
-    // Можно добавить другие кастомные методы для специфичных запросов
 }

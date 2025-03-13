@@ -23,7 +23,6 @@ public class Player {
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
-    // Getters and Setters
     public Integer getPlayerId() {
         return playerId;
     }

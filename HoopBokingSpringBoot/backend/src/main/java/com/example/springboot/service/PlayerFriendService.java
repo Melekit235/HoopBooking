@@ -19,22 +19,18 @@ public class PlayerFriendService {
         this.playerFriendRepository = playerFriendRepository;
     }
 
-    // Получение всех друзей для определенного игрока
     public List<PlayerFriend> getFriendsByPlayer(Player player) {
         return playerFriendRepository.findByPlayer(player);
     }
 
-    // Добавление новой записи о друге
     public PlayerFriend addPlayerFriend(PlayerFriend playerFriend) {
         return playerFriendRepository.save(playerFriend);
     }
 
-    // Удаление записи о друге
     public void deletePlayerFriend(Long id) {
         playerFriendRepository.deleteById(id);
     }
 
-    // Получение записи о друге по ID
     public Optional<PlayerFriend> getPlayerFriendById(Long id) {
         return playerFriendRepository.findById(id);
     }

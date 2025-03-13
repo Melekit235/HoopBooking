@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface PlayerFriendRepository extends JpaRepository<PlayerFriend, Long> {
 
-    // Метод для получения всех друзей для определенного игрока
     List<PlayerFriend> findByPlayer(Player player);
 
 }

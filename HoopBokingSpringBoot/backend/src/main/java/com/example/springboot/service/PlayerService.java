@@ -21,16 +21,13 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    // Получение всех игроков
     public List<Player> getAllPlayers() {
         return playerRepository.findAll();
     }
 
-    // Получение игрока по ID
     public Optional<Player> getPlayerById(Integer playerId) {
         return playerRepository.findById(playerId);
     }
-
 
     public Player getPlayerByEmail(String email) {
         return playerRepository.findByEmail(email);
@@ -57,10 +54,6 @@ public class PlayerService {
         return true;
     }
 
-
-
-
-    // Обновление существующего игрока (без изменения пароля)
     public Player updatePlayer(Player player) {
         Optional<Player> existingPlayer = playerRepository.findById(player.getPlayerId());
 

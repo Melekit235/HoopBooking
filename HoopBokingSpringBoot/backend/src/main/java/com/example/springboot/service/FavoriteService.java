@@ -20,27 +20,22 @@ public class FavoriteService {
         this.favoriteRepository = favoriteRepository;
     }
 
-    // Метод для получения всех фаворитов игрока
     public List<Favorite> getFavoritesByPlayer(Player player) {
         return favoriteRepository.findByPlayer(player);
     }
 
-    // Метод для получения всех фаворитов площадки
     public List<Favorite> getFavoritesByCourt(Court court) {
         return favoriteRepository.findByCourt(court);
     }
 
-    // Метод для добавления нового фаворита
     public Favorite addFavorite(Favorite favorite) {
         return favoriteRepository.save(favorite);
     }
 
-    // Метод для удаления фаворита
     public void deleteFavorite(Long id) {
         favoriteRepository.deleteById(id);
     }
 
-    // Метод для получения фаворита по ID
     public Optional<Favorite> getFavoriteById(Long id) {
         return favoriteRepository.findById(id);
     }

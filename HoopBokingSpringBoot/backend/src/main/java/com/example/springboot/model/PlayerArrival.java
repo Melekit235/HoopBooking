@@ -28,7 +28,6 @@ public class PlayerArrival {
     @Column(name = "end_time")
     private LocalTime endTime;
 
-    // Getters and Setters
     public Player getPlayer() { return player; }
     public void setPlayer(Player player) { this.player = player; }
 

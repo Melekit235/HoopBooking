@@ -21,7 +21,6 @@ public class PlayerFriend {
     @Column(name = "friendship_date", nullable = false)
     private LocalDate friendshipDate;
 
-    // Getters and Setters
     public Player getPlayer() { return player; }
     public void setPlayer(Player player) { this.player = player; }
 

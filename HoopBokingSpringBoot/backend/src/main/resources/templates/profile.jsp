@@ -56,14 +56,12 @@
             </form>
         </div>
 
-        <!-- Player information section -->
         <div class="user-info">
             <p><strong>Имя:</strong> ${user.firstName}</p>
             <p><strong>Фамилия:</strong> ${user.lastName}</p>
             <p><strong>Email:</strong> ${user.email}</p>
         </div>
 
-        <!-- Friends section -->
         <div class="form-section">
             <h3>Друзья</h3>
             <ul class="friend-list">
@@ -73,7 +71,6 @@
             </ul>
         </div>
 
-        <!-- Favorite Courts section -->
         <div class="form-section">
             <h3>Любимые площадки</h3>
             <ul class="court-list">

@@ -14,7 +14,6 @@ public class City {
     @Column(name = "city_name", nullable = false)
     private String cityName;
 
-    // Getters and Setters
     public Integer getCityId() {
         return cityId;
     }

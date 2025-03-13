@@ -13,17 +13,12 @@ import java.util.List;
 @Repository
 public interface PlayerArrivalRepository extends JpaRepository<PlayerArrival, Long> {
 
-    // Метод для получения всех записей о прибытиях для определенного игрока
     List<PlayerArrival> findByPlayer(Player player);
 
-    // Метод для получения всех записей о прибытиях для определенной площадки
     List<PlayerArrival> findByCourt(Court court);
 
-    // Метод для получения записей о прибытиях для игрока на определенную дату
     List<PlayerArrival> findByPlayerAndArrivalDate(Player player, LocalDate arrivalDate);
 
-    // Метод для получения записей о прибытиях на площадку в определенный период времени
     List<PlayerArrival> findByCourtAndArrivalDateAndStartTimeBetween(Court court, LocalDate arrivalDate, LocalTime startTime, LocalTime endTime);
 
-    // Можно добавлять дополнительные методы для специфичных запросов
 }

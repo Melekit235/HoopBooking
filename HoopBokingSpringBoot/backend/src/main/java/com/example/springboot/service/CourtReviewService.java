@@ -18,32 +18,28 @@ public class CourtReviewService {
         this.courtReviewRepository = courtReviewRepository;
     }
 
-    // Метод для получения всех обзоров
     public List<CourtReview> getAllReviews() {
         return courtReviewRepository.findAll();
     }
 
-    // Метод для получения обзора по ID
     public Optional<CourtReview> getReviewById(Integer reviewId) {
         return courtReviewRepository.findById(reviewId);
     }
 
-    // Метод для добавления нового обзора
     public CourtReview addReview(CourtReview courtReview) {
         return courtReviewRepository.save(courtReview);
     }
 
-    // Метод для обновления обзора
+
     public CourtReview updateReview(Integer reviewId, CourtReview reviewDetails) {
-        // Проверяем, существует ли обзор с таким ID
+
         if (courtReviewRepository.existsById(reviewId)) {
-            reviewDetails.setReviewId(reviewId);  // Устанавливаем ID для обновления
+            reviewDetails.setReviewId(reviewId);
             return courtReviewRepository.save(reviewDetails);
         }
-        return null;  // Или выбросить исключение, если обзор не найден
+        return null;
     }
 
-    // Метод для удаления обзора по ID
     public void deleteReview(Integer reviewId) {
         courtReviewRepository.deleteById(reviewId);
     }

@@ -18,32 +18,28 @@ public class CityService {
         this.cityRepository = cityRepository;
     }
 
-    // Метод для получения всех городов
     public List<City> getAllCities() {
         return cityRepository.findAll();
     }
 
-    // Метод для получения города по ID
     public Optional<City> getCityById(Integer cityId) {
         return cityRepository.findById(cityId);
     }
 
-    // Метод для добавления нового города
     public City addCity(City city) {
         return cityRepository.save(city);
     }
 
-    // Метод для обновления информации о городе
     public City updateCity(Integer cityId, City cityDetails) {
-        // Проверяем, существует ли город с таким ID
+
         if (cityRepository.existsById(cityId)) {
-            cityDetails.setCityId(cityId);  // Устанавливаем ID для обновления
+            cityDetails.setCityId(cityId);
             return cityRepository.save(cityDetails);
         }
-        return null;  // Или выбросить исключение, если город не найден
+        return null;
     }
 
-    // Метод для удаления города по ID
+
     public void deleteCity(Integer cityId) {
         cityRepository.deleteById(cityId);
     }

@@ -150,14 +150,12 @@
     <div class="container">
         <h2>${court.name}</h2>
 
-        <!-- Information about the court -->
         <div class="court-info">
             <p><strong>Город:</strong> ${court.city}</p>
             <p><strong>Адрес:</strong> ${court.address}</p>
             <p><strong>Тип корта:</strong> ${court.type}</p>
         </div>
 
-        <!-- Booking form -->
         <div class="section">
             <h3>Запись на игру</h3>
             <form method="post" action="bookCourt">
@@ -172,7 +170,6 @@
             </form>
         </div>
 
-        <!-- Booked players -->
         <div class="section">
             <h3>Записавшиеся игроки</h3>
             <ul>
@@ -182,7 +179,6 @@
             </ul>
         </div>
 
-        <!-- Add a comment -->
         <div class="section">
             <h3>Добавить комментарий</h3>
             <form method="post" action="addComment">
@@ -192,7 +188,6 @@
             </form>
         </div>
 
-        <!-- Comments -->
         <div class="section">
             <h3>Комментарии</h3>
             <ul>
@@ -202,7 +197,6 @@
             </ul>
         </div>
 
-        <!-- Link to return -->
         <a href="/main" class="back-link">Вернуться к списку кортов</a>
     </div>
 
