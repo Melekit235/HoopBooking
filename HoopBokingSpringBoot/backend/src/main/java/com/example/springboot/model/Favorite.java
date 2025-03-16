@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "favorites")
-@IdClass(FavoriteId.class) // <-- Указываем класс составного ключа
+@IdClass(FavoriteId.class)
 public class Favorite {
 
     @Id

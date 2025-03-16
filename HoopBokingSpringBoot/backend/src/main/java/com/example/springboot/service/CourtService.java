@@ -1,5 +1,6 @@
 package com.example.springboot.service;
 
+import com.example.springboot.dto.CourtDto;
 import com.example.springboot.model.Court;
 import com.example.springboot.repository.CourtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,29 +19,16 @@ public class CourtService {
         this.courtRepository = courtRepository;
     }
 
-    public List<Court> getAllCourts() {
-        return courtRepository.findAll();
+    public List<CourtDto> getAllCourts() {
+        return courtRepository.findAllCourtsWithNames();
+    }
+
+    public CourtDto getCourtDetailsById(Integer courtId) {
+        return courtRepository.findCourtById(courtId);
     }
 
     public Optional<Court> getCourtById(Integer courtId) {
         return courtRepository.findById(courtId);
-    }
-
-    public Court addCourt(Court court) {
-        return courtRepository.save(court);
-    }
-
-    public Court updateCourt(Integer courtId, Court courtDetails) {
-        // Проверяем, существует ли корт с таким ID
-        if (courtRepository.existsById(courtId)) {
-            courtDetails.setCourtId(courtId);
-            return courtRepository.save(courtDetails);
-        }
-        return null;
-    }
-
-    public void deleteCourt(Integer courtId) {
-        courtRepository.deleteById(courtId);
     }
 
 }

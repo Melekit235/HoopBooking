@@ -1,13 +1,13 @@
 package com.example.springboot.controller;
 
+import com.example.springboot.dto.PlayerDto;
 import com.example.springboot.model.Player;
 import com.example.springboot.service.PlayerService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/login")
+@CrossOrigin(origins = "http://localhost:3000")
 public class LoginController {
 
     private final PlayerService playerService;
@@ -16,33 +16,14 @@ public class LoginController {
         this.playerService = playerService;
     }
 
-    @GetMapping
-    public String showLoginForm() {
-        return "login";  // Страница входа
-    }
-
     @PostMapping
-    public String loginUser(@RequestParam String email,
-                            @RequestParam String password,
-                            Model model) {
-        Player player = playerService.authenticate(email, password);
+    public Integer loginUser(@RequestBody PlayerDto request) {
+        Player player = playerService.authenticate(request.getEmail(), request.getPasswordHash());
+
         if (player != null) {
-            return "redirect:/main"; // Перенаправление на главную страницу
+            return player.getPlayerId();
         } else {
-            model.addAttribute("message", "Неверный email или пароль.");
-            return "login"; // Остаемся на странице входа с ошибкой
+            return null;
         }
     }
-
-    @GetMapping("/main")
-    public String logout() {
-        return "redirect:/main"; // Перенаправление на страницу входа после выхода
-    }
-
-
-    @GetMapping("/register")
-    public String showRegisterForm() {
-        return "register";
-    }
-
 }

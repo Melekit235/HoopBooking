@@ -26,21 +26,4 @@ public class CityService {
         return cityRepository.findById(cityId);
     }
 
-    public City addCity(City city) {
-        return cityRepository.save(city);
-    }
-
-    public City updateCity(Integer cityId, City cityDetails) {
-
-        if (cityRepository.existsById(cityId)) {
-            cityDetails.setCityId(cityId);
-            return cityRepository.save(cityDetails);
-        }
-        return null;
-    }
-
-
-    public void deleteCity(Integer cityId) {
-        cityRepository.deleteById(cityId);
-    }
 }

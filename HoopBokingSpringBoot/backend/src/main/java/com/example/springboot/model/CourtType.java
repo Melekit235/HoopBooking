@@ -7,14 +7,13 @@ import jakarta.persistence.*;
 public class CourtType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Автоматическая генерация идентификатора
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "type_id")
     private Integer typeId;
 
     @Column(name = "type", nullable = false)
     private String type;
 
-    // Getters and Setters
     public Integer getTypeId() {
         return typeId;
     }

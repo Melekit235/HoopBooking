@@ -1,22 +1,45 @@
 package com.example.springboot.controller;
 
+import com.example.springboot.dto.FavoriteDto;
+import com.example.springboot.dto.FriendDto;
+import com.example.springboot.dto.PlayerDto;
+import com.example.springboot.service.FavoriteService;
+import com.example.springboot.service.FriendService;
 import com.example.springboot.service.PlayerService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/profile")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProfileController {
 
-    private final PlayerService playerService;
+    @Autowired
+    private PlayerService playerService;
 
-    public ProfileController(PlayerService playerService) {
-        this.playerService = playerService;
+    @Autowired
+    private FriendService friendService;
+
+    @Autowired
+    private FavoriteService favoriteService;
+
+    @GetMapping
+    @RequestMapping("/{userId}")
+    public PlayerDto showProfileForm(@PathVariable Integer userId) {
+        return playerService.getPlayerDtoById(userId);
     }
 
     @GetMapping
-    public String showProfileForm() {
-        return "profile";
+    @RequestMapping("/friends/{userId}")
+    public List<FriendDto> showPlayerFiend(@PathVariable Integer userId) {
+        return friendService.getFriendById(userId);
+    }
+
+    @GetMapping
+    @RequestMapping("/favorites/{userId}")
+    public List<FavoriteDto> showFavorite(@PathVariable Integer userId) {
+        return favoriteService.getFavoriteCourtsByPlayerId(userId);
     }
 }

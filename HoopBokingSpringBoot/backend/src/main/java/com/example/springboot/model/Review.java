@@ -6,10 +6,10 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "court_reviews")
-public class CourtReview {
+public class Review {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Автоматическая генерация идентификатора
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
     private Integer reviewId;
 
@@ -21,16 +21,12 @@ public class CourtReview {
     @JoinColumn(name = "player_id", referencedColumnName = "player_id", nullable = false)
     private Player player;
 
-    @Column(name = "rating", nullable = false)
-    private Integer rating;
-
     @Column(name = "review_text")
     private String reviewText;
 
     @Column(name = "review_date")
     private LocalDate reviewDate;
 
-    // Getters and Setters
     public Integer getReviewId() {
         return reviewId;
     }
@@ -55,14 +51,6 @@ public class CourtReview {
         this.player = player;
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
     public String getReviewText() {
         return reviewText;
     }
@@ -81,11 +69,10 @@ public class CourtReview {
 
     @Override
     public String toString() {
-        return "CourtReview{" +
+        return "Review{" +
                 "reviewId=" + reviewId +
                 ", court=" + court +
                 ", player=" + player +
-                ", rating=" + rating +
                 ", reviewText='" + reviewText + '\'' +
                 ", reviewDate=" + reviewDate +
                 '}';

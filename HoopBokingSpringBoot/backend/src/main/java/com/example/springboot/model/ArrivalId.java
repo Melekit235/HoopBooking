@@ -3,28 +3,28 @@ package com.example.springboot.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PlayerArrivalId implements Serializable {
-    private Long player;
-    private Long court;
+public class ArrivalId implements Serializable {
+    private Integer player;
+    private Integer court;
 
-    public PlayerArrivalId() {}
+    public ArrivalId() {}
 
-    public PlayerArrivalId(Long player, Long court) {
+    public ArrivalId(Integer player, Integer court) {
         this.player = player;
         this.court = court;
     }
 
-    public Long getPlayer() { return player; }
-    public void setPlayer(Long player) { this.player = player; }
+    public Integer getPlayer() { return player; }
+    public void setPlayer(Integer player) { this.player = player; }
 
-    public Long getCourt() { return court; }
-    public void setCourt(Long court) { this.court = court; }
+    public Integer getCourt() { return court; }
+    public void setCourt(Integer court) { this.court = court; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlayerArrivalId that = (PlayerArrivalId) o;
+        ArrivalId that = (ArrivalId) o;
         return Objects.equals(player, that.player) && Objects.equals(court, that.court);
     }
 

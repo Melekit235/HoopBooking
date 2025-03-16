@@ -1,13 +1,11 @@
 package com.example.springboot.service;
 
+import com.example.springboot.dto.PlayerDto;
 import com.example.springboot.model.Player;
 import com.example.springboot.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -21,30 +19,17 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    public List<Player> getAllPlayers() {
-        return playerRepository.findAll();
-    }
-
     public Optional<Player> getPlayerById(Integer playerId) {
         return playerRepository.findById(playerId);
     }
 
-    public Player getPlayerByEmail(String email) {
-        return playerRepository.findByEmail(email);
+    public PlayerDto getPlayerDtoById(Integer playerId) {
+        return playerRepository.findPlayerById(playerId);
     }
-
-
-
 
     public boolean register(String firsName, String lastName, String email, String password) {
 
-       /* if (playerRepository.findByEmail(email)) {
-            return false;
-        }*/
-
-
         Player newPlayer = new Player();
-        newPlayer.setPlayerId(1);
         newPlayer.setFirstName(firsName);
         newPlayer.setLastName(lastName);
         newPlayer.setEmail(email);
@@ -52,20 +37,6 @@ public class PlayerService {
 
         playerRepository.save(newPlayer);
         return true;
-    }
-
-    public Player updatePlayer(Player player) {
-        Optional<Player> existingPlayer = playerRepository.findById(player.getPlayerId());
-
-        if (existingPlayer.isPresent()) {
-            Player updatedPlayer = existingPlayer.get();
-            updatedPlayer.setFirstName(player.getFirstName());
-            updatedPlayer.setLastName(player.getLastName());
-            updatedPlayer.setEmail(player.getEmail());
-
-            return playerRepository.save(updatedPlayer);
-        }
-        return null;
     }
 
     public Player authenticate(String email, String password) {
@@ -78,11 +49,4 @@ public class PlayerService {
 
         return null;
     }
-
-
-    public void deletePlayer(Integer playerId) {
-        playerRepository.deleteById(playerId);
-    }
-
-
 }

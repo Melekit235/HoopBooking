@@ -6,8 +6,8 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "player_arrivals")
-@IdClass(PlayerArrivalId.class)
-public class PlayerArrival {
+@IdClass(ArrivalId.class)
+public class Arrival {
 
     @Id
     @ManyToOne
@@ -45,7 +45,7 @@ public class PlayerArrival {
 
     @Override
     public String toString() {
-        return "PlayerArrival{" +
+        return "Arrival{" +
                 "player=" + player +
                 ", court=" + court +
                 ", arrivalDate=" + arrivalDate +

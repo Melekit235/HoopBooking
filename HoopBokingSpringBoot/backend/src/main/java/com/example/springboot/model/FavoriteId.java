@@ -7,8 +7,6 @@ public class FavoriteId implements Serializable {
     private Long player;
     private Long court;
 
-    public FavoriteId() {}
-
     public FavoriteId(Long player, Long court) {
         this.player = player;
         this.court = court;

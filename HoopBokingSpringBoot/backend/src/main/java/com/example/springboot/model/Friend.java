@@ -5,8 +5,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "player_friends")
-@IdClass(PlayerFriendId.class) // Указываем составной ключ
-public class PlayerFriend {
+@IdClass(FriendId.class)
+public class Friend {
 
     @Id
     @ManyToOne
@@ -32,7 +32,7 @@ public class PlayerFriend {
 
     @Override
     public String toString() {
-        return "PlayerFriend{" +
+        return "Friend{" +
                 "player=" + player +
                 ", friend=" + friend +
                 ", friendshipDate=" + friendshipDate +

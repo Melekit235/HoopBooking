@@ -7,22 +7,21 @@ import jakarta.persistence.*;
 public class Court {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Автоматическая генерация идентификатора
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "court_id")
     private Integer courtId;
 
     @ManyToOne
     @JoinColumn(name = "city_id", nullable = false)
-    private City city;  // Связь с таблицей cities
+    private City city;
 
     @ManyToOne
     @JoinColumn(name = "court_type", nullable = false)
-    private CourtType courtType;  // Связь с таблицей court_types
+    private CourtType courtType;
 
     @Column(name = "court_address", nullable = false)
-    private String courtAddress;  // Адрес площадки
+    private String courtAddress;
 
-    // Getters and Setters
     public Integer getCourtId() {
         return courtId;
     }

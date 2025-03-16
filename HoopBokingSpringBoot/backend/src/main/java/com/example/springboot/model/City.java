@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Автоматическая генерация идентификатора
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "city_id")
     private Integer cityId;
 
