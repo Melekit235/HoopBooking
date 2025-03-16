@@ -1,0 +1,23 @@
+<div class="register-container">
+    <h2>Регистрация</h2>
+    <form (ngSubmit)="handleSubmit()">
+      <label>Имя:</label>
+      <input type="text" [(ngModel)]="firstName" name="firstName" required />
+  
+      <label>Фамилия:</label>
+      <input type="text" [(ngModel)]="lastName" name="lastName" required />
+  
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="email" name="email" required />
+  
+      <label>Пароль:</label>
+      <input type="password" [(ngModel)]="passwordHash" name="password" required />
+  
+      <button type="submit">Зарегистрироваться</button>
+    </form>
+  
+    <p>Есть аккаунт? <a routerLink="/login">Войти</a></p>
+  
+    <p *ngIf="message" class="error-message">{{ message }}</p>
+  </div>
+  

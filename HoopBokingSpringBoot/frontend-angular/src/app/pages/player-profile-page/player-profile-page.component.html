@@ -1,0 +1,40 @@
+<div class="profile-container">
+    <header class="header">
+      <div class="header-content">
+        <h2>Профиль игрока</h2>
+        <button class="logout-button" (click)="handleLogout()">Выйти</button>
+      </div>
+    </header>
+  
+    <div class="profile-card">
+      <div class="user-info">
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+      </div>
+  
+      <div class="form-section">
+        <h3>Друзья</h3>
+        <ul class="friend-list">
+          <li *ngIf="friends.length === 0">Нет друзей</li>
+          <li *ngFor="let friend of friends">
+            {{ friend.firstName }} {{ friend.lastName }} - {{ friend.friendshipDate }}
+          </li>
+        </ul>
+      </div>
+  
+      <div class="form-section">
+        <h3>Любимые площадки</h3>
+        <ul class="court-list">
+          <li *ngIf="favoriteCourts.length === 0">Нет любимых площадок</li>
+          <li *ngFor="let court of favoriteCourts">
+            {{ court.courtType }} - {{ court.courtAddress }} - {{ court.cityName }}
+          </li>
+        </ul>
+      </div>
+  
+      <div class="button-container">
+        <button class="back-to-courts" (click)="handleBackToCourts()">Назад к кортам</button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,33 @@
+<div class="court-list-page">
+    <header class="header">
+      <div class="header-content">
+        <h1 class="title">Баскетбольные корты</h1>
+        <a *ngIf="userId; else loginLink" [routerLink]="['/profile', userId]" class="profile-link">Профиль</a>
+        <ng-template #loginLink>
+          <a [routerLink]="['/login']" class="login-link">Войти</a>
+        </ng-template>
+      </div>
+    </header>
+  
+    <main class="container">
+      <h2 class="section-title">Список кортов</h2>
+      <input
+        type="text"
+        placeholder="Поиск по названию, городу или адресу..."
+        class="search-input"
+        [(ngModel)]="searchQuery"
+      />
+  
+      <div *ngIf="filteredCourts.length > 0; else emptyMessage" class="court-grid">
+        <a *ngFor="let court of filteredCourts" [routerLink]="['/court', court.courtId]" class="court-card">
+          <h3 class="court-name">{{ court.courtTypeName }}</h3>
+          <p class="court-location">{{ court.cityName }}, {{ court.courtAddress }}</p>
+        </a>
+      </div>
+  
+      <ng-template #emptyMessage>
+        <p class="empty-message">Кортов не найдено.</p>
+      </ng-template>
+    </main>
+  </div>
+  

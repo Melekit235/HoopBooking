@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/court")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4200"})
 public class CourtDetailsController {
 
     @Autowired
@@ -42,15 +42,15 @@ public class CourtDetailsController {
     @PostMapping("/{courtId}/arrivals")
     public ResponseEntity<String> arrivalCourt(@PathVariable Integer courtId, @RequestBody ArrivalRequestDto arrivalRequestDto) {
         arrivalService.addPlayerArrival(courtId, arrivalRequestDto);
-        return ResponseEntity.ok("Successful!");
+        return ResponseEntity.ok("ok");
     }
 
 
     @PostMapping("/{courtId}/reviews")
     public ResponseEntity<String> postReview(@PathVariable Integer courtId, @RequestBody ReviewRequestDto reviewRequest) {
 
-        reviewService.addReview(courtId, reviewRequest);
-        return ResponseEntity.ok("Review added!");
+         reviewService.addReview(courtId, reviewRequest);
+        return ResponseEntity.ok("ok");
     }
 
 }

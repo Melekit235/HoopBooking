@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/courts")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4200"})
 public class MainController {
 
     @Autowired

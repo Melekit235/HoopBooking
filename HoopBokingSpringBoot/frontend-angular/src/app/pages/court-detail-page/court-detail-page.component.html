@@ -1,0 +1,67 @@
+<div class="container">
+  <button class="back-button" (click)="navigateBack()">Вернуться к списку кортов</button>
+
+  <div *ngIf="court; else loading" class="court-details">
+    <h2>{{ court.name }}</h2>
+
+    <div class="court-info">
+      <p><strong>Город:</strong> {{ court.cityName }}</p>
+      <p><strong>Адрес:</strong> {{ court.courtAddress }}</p>
+      <p><strong>Тип корта:</strong> {{ court.courtTypeName }}</p>
+    </div>
+
+    <div class="section">
+      <h3>Запись на игру</h3>
+      <form (ngSubmit)="handleArrivalSubmit()" class="arrival-form">
+        <label>Дата:</label>
+        <input type="date" [(ngModel)]="date" name="date" required />
+
+        <label>Время с:</label>
+        <input type="time" [(ngModel)]="startTime" name="startTime" required />
+
+        <label>Время до:</label>
+        <input type="time" [(ngModel)]="endTime" name="endTime" required />
+
+        <button type="submit">Записаться</button>
+      </form>
+    </div>
+
+    <div class="section players-section">
+      <h3>Записавшиеся игроки</h3>
+      <ul *ngIf="arrivals.length > 0; else noArrivals">
+        <li *ngFor="let arrival of arrivals" class="player-card">
+          <span class="player-name">{{ arrival.playerName }}</span>
+          <span class="player-time">{{ arrival.startTime }} - {{ arrival.endTime }}</span>
+        </li>
+      </ul>
+      <ng-template #noArrivals>
+        <p>Нет записавшихся игроков.</p>
+      </ng-template>
+    </div>
+
+    <div class="section">
+      <h3>Добавить комментарий</h3>
+      <form (ngSubmit)="handleReviewSubmit()" class="review-form">
+        <textarea [(ngModel)]="reviewText" name="reviewText" required></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
+
+    <div class="section comments-section">
+      <h3>Комментарии</h3>
+      <ul *ngIf="reviews.length > 0; else noReviews">
+        <li *ngFor="let review of reviews" class="comment-card">
+          <p class="comment-header"><strong>{{ review.firstName }} {{ review.lastName }}</strong></p>
+          <p class="comment-text">{{ review.reviewText }}</p>
+        </li>
+      </ul>
+      <ng-template #noReviews>
+        <p>Комментариев пока нет.</p>
+      </ng-template>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p>Загрузка...</p>
+  </ng-template>
+</div>
