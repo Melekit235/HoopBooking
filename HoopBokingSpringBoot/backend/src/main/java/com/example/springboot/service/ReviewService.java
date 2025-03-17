@@ -2,6 +2,8 @@ package com.example.springboot.service;
 
 import com.example.springboot.dto.ReviewResponseDto;
 import com.example.springboot.dto.ReviewRequestDto;
+import com.example.springboot.model.Court;
+import com.example.springboot.model.Player;
 import com.example.springboot.model.Review;
 import com.example.springboot.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +42,13 @@ public class ReviewService {
     public void addReview(Integer courtId, ReviewRequestDto reviewRequestDto) {
         Review review = new Review();
 
-        review.setCourt(courtService.getCourtById(courtId).get());
-        review.setPlayer(playerService.getPlayerById(reviewRequestDto.getUserId()).get());
+        Player player = playerService.getPlayerById(reviewRequestDto.getUserId())
+                .orElseThrow(() -> new RuntimeException("Player not found"));
+        Court court = courtService.getCourtById(courtId)
+                .orElseThrow(() -> new RuntimeException("Court not found"));
+
+        review.setCourt(court);
+        review.setPlayer(player);
         review.setReviewText(reviewRequestDto.getText());
         review.setReviewDate(LocalDate.now());
         reviewRepository.save(review);

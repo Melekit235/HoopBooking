@@ -18,7 +18,7 @@ public class RegisterController {
 
 	@PostMapping
 	public String registerPlayer(@RequestBody PlayerDto request) {
-		playerService.register(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPasswordHash());
+		playerService.register(request);
 		return "redirect:/login";
 	}
 }

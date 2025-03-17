@@ -16,14 +16,18 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4200"})
 public class ProfileController {
 
-    @Autowired
-    private PlayerService playerService;
+    private final PlayerService playerService;
 
-    @Autowired
-    private FriendService friendService;
+    private final FriendService friendService;
 
-    @Autowired
-    private FavoriteService favoriteService;
+    private final FavoriteService favoriteService;
+
+    public ProfileController(PlayerService playerService, FriendService friendService, FavoriteService favoriteService)
+    {
+        this.playerService = playerService;
+        this.friendService = friendService;
+        this.favoriteService = favoriteService;
+    }
 
     @GetMapping
     @RequestMapping("/{userId}")

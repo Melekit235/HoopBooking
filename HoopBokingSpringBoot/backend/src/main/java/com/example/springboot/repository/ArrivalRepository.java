@@ -12,9 +12,13 @@ import java.util.List;
 @Repository
 public interface ArrivalRepository extends JpaRepository<Arrival, Long> {
 
-    @Query("SELECT new com.example.springboot.dto.ArrivalResponseDto(" +
-            "pa.player.firstName || ' ' || pa.player.lastName, pa.arrivalDate, pa.startTime, pa.endTime) " +
-            "FROM Arrival pa " +
-            "WHERE pa.court.courtId = :courtId")
+    @Query("""
+            SELECT new com.example.springboot.dto.ArrivalResponseDto
+            (
+            pa.player.firstName || ' ' || pa.player.lastName, pa.arrivalDate, pa.startTime, pa.endTime)
+            FROM Arrival pa
+            WHERE pa.court.courtId = :courtId
+        """
+    )
     List<ArrivalResponseDto> findPlayerArrivalsByCourtId(@Param("courtId") Integer courtId);
 }

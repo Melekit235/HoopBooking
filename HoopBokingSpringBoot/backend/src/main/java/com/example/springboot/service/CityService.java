@@ -26,4 +26,9 @@ public class CityService {
         return cityRepository.findById(cityId);
     }
 
+    public Optional<City> getCityByName(String cityName){return cityRepository.findByCityName(cityName);}
+
+    public List<City> findByName(String cityName) {
+        return cityRepository.findByCityNameContainingIgnoreCase(cityName);
+    }
 }

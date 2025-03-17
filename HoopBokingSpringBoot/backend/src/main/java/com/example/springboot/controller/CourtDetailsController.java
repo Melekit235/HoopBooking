@@ -4,7 +4,6 @@ import com.example.springboot.dto.*;
 import com.example.springboot.service.ReviewService;
 import com.example.springboot.service.CourtService;
 import com.example.springboot.service.ArrivalService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,14 +14,15 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4200"})
 public class CourtDetailsController {
 
-    @Autowired
-    private CourtService courtService;
+    private final CourtService courtService;
+    private final ReviewService reviewService;
+    private final ArrivalService arrivalService;
 
-    @Autowired
-    private ReviewService reviewService;
-
-    @Autowired
-    private ArrivalService arrivalService;
+    public CourtDetailsController(CourtService courtService, ReviewService reviewService, ArrivalService arrivalService) {
+        this.courtService = courtService;
+        this.reviewService = reviewService;
+        this.arrivalService = arrivalService;
+    }
 
     @GetMapping("/{courtId}")
     public CourtDto getCourtDetails(@PathVariable Integer courtId) {
@@ -48,9 +48,21 @@ public class CourtDetailsController {
 
     @PostMapping("/{courtId}/reviews")
     public ResponseEntity<String> postReview(@PathVariable Integer courtId, @RequestBody ReviewRequestDto reviewRequest) {
-
-         reviewService.addReview(courtId, reviewRequest);
+        reviewService.addReview(courtId, reviewRequest);
         return ResponseEntity.ok("ok");
+    }
+
+
+    @PutMapping("/{courtId}")
+    public ResponseEntity<String> updateCourt(@PathVariable Integer courtId, @RequestBody CourtRequestDto courtRequestDto) {
+        courtService.updateCourt(courtId, courtRequestDto);
+        return ResponseEntity.ok("");
+    }
+
+    @DeleteMapping("/{courtId}")
+    public ResponseEntity<String> deleteCourt(@PathVariable Integer courtId) {
+        courtService.deleteCourt(courtId);
+        return ResponseEntity.ok("");
     }
 
 }

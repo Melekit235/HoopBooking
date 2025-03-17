@@ -12,10 +12,13 @@ public interface CourtRepository extends JpaRepository<Court, Integer> {
 
     List<Court> findAll();
 
-    @Query("SELECT new com.example.springboot.dto.CourtDto(c.courtId, c.courtAddress, ct.type, ci.cityName) " +
-            "FROM Court c " +
-            "JOIN c.city ci " +
-            "JOIN c.courtType ct")
+    @Query("""
+            SELECT new com.example.springboot.dto.CourtDto(c.courtId, c.courtAddress, ct.type, ci.cityName)
+            FROM Court c
+            JOIN c.city ci
+            JOIN c.courtType ct
+            """
+    )
     List<CourtDto> findAllCourtsWithNames();
 
     @Query("SELECT new com.example.springboot.dto.CourtDto(c.courtId, ci.cityName, ct.type, c.courtAddress) " +

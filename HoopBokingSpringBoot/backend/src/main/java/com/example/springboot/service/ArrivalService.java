@@ -3,6 +3,8 @@ package com.example.springboot.service;
 import com.example.springboot.dto.ArrivalRequestDto;
 import com.example.springboot.dto.ArrivalResponseDto;
 import com.example.springboot.model.Arrival;
+import com.example.springboot.model.Court;
+import com.example.springboot.model.Player;
 import com.example.springboot.repository.ArrivalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +32,13 @@ public class ArrivalService {
     public void addPlayerArrival(Integer courtId, ArrivalRequestDto arrivalRequestDto) {
         Arrival arrival = new Arrival();
 
-        arrival.setPlayer(playerService.getPlayerById(arrivalRequestDto.getUserId()).get());
-        arrival.setCourt(courtService.getCourtById(courtId).get());
+        Player player = playerService.getPlayerById(arrivalRequestDto.getUserId())
+                .orElseThrow(() -> new RuntimeException("Player not found"));
+        Court court = courtService.getCourtById(courtId)
+                .orElseThrow(() -> new RuntimeException("Court not found"));
+
+        arrival.setPlayer(player);
+        arrival.setCourt(court);
         arrival.setArrivalDate(arrivalRequestDto.getDate());
         arrival.setStartTime(arrivalRequestDto.getStartTime());
         arrival.setEndTime(arrivalRequestDto.getEndTime());

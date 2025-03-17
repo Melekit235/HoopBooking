@@ -15,10 +15,13 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
 
     List<Friend> findByPlayer(Player player);
 
-    @Query("SELECT new com.example.springboot.dto.FriendDto(p.id, p.firstName, p.lastName, pf.friendshipDate) " +
-            "FROM Player p " +
-            "JOIN Friend pf ON p.id = pf.friend.id " +
-            "WHERE pf.player.playerId = :playerId")
+    @Query("""
+            SELECT new com.example.springboot.dto.FriendDto(p.id, p.firstName, p.lastName, pf.friendshipDate)
+            FROM Player p
+            JOIN Friend pf ON p.id = pf.friend.id
+            WHERE pf.player.playerId = :playerId
+            """
+    )
     List<FriendDto> findFriendsByPlayerId(@Param("playerId") Integer playerId);
 
 

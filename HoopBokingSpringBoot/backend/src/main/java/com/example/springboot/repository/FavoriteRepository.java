@@ -19,12 +19,16 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
     List<Favorite> findByCourt(Court court);
 
-    @Query("SELECT new com.example.springboot.dto.FavoriteDto(c.courtId, ci.cityName, ct.type, c.courtAddress) " +
-            "FROM Favorite f " +
-            "JOIN f.court c " +
-            "JOIN c.city ci " +
-            "JOIN c.courtType ct " +
-            "WHERE f.player.playerId = :playerId")
+    @Query("""
+            
+            SELECT new com.example.springboot.dto.FavoriteDto(c.courtId, ci.cityName, ct.type, c.courtAddress)
+            FROM Favorite f
+            JOIN f.court c
+            JOIN c.city ci
+            JOIN c.courtType ct
+            WHERE f.player.playerId = :playerId
+            """
+    )
     List<FavoriteDto> findFavoriteCourtsByPlayerId(@Param("playerId") Integer playerId);
 
 

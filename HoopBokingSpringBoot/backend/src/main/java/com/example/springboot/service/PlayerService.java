@@ -27,16 +27,15 @@ public class PlayerService {
         return playerRepository.findPlayerById(playerId);
     }
 
-    public boolean register(String firsName, String lastName, String email, String password) {
+    public void register(PlayerDto playerDto) {
 
         Player newPlayer = new Player();
-        newPlayer.setFirstName(firsName);
-        newPlayer.setLastName(lastName);
-        newPlayer.setEmail(email);
-        newPlayer.setPasswordHash(password);
+        newPlayer.setFirstName(playerDto.getFirstName());
+        newPlayer.setLastName(playerDto.getLastName());
+        newPlayer.setEmail(playerDto.getEmail());
+        newPlayer.setPasswordHash(playerDto.getPasswordHash());
 
         playerRepository.save(newPlayer);
-        return true;
     }
 
     public Player authenticate(String email, String password) {
@@ -49,4 +48,5 @@ public class PlayerService {
 
         return null;
     }
+
 }
