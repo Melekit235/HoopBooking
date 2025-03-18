@@ -1,6 +1,3 @@
-BEGIN;
-
-
 CREATE TABLE IF NOT EXISTS public.cities
 (
     city_id integer NOT NULL,
@@ -142,40 +139,3 @@ ALTER TABLE IF EXISTS public.player_friends
     REFERENCES public.players (player_id) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE CASCADE;
-
-
-
-
-
-INSERT INTO public.cities (city_id, city_name)
-SELECT 1, 'New York' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'New York')
-UNION ALL
-SELECT 2, 'Zhodino' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'Zhodino')
-UNION ALL
-SELECT 3, 'Los Angeles' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'Los Angeles')
-UNION ALL
-SELECT 4, 'Chicago' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'Chicago')
-UNION ALL
-SELECT 5, 'Oklahoma' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'Oklahoma')
-UNION ALL
-SELECT 6, 'Phoenix' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'Phoenix')
-UNION ALL
-SELECT 7, 'New Orleans' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'New Orleans')
-UNION ALL
-SELECT 8, 'San Francisco' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'San Francisco')
-UNION ALL
-SELECT 9, 'Detroit' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'Detroit')
-UNION ALL
-SELECT 10, 'Memphis' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'Memphis')
-UNION ALL
-SELECT 11, 'Boston' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'Boston')
-UNION ALL
-SELECT 12, 'Cleveland' WHERE NOT EXISTS (SELECT 1 FROM public.cities WHERE city_name = 'Cleveland');
-
-
-INSERT INTO public.court_types (type_id, type)
-SELECT 1, 'Indoor' WHERE NOT EXISTS (SELECT 1 FROM public.court_types WHERE type = 'Indoor')
-UNION ALL
-SELECT 2, 'Outdoor' WHERE NOT EXISTS (SELECT 1 FROM public.court_types WHERE type = 'Outdoor')
-UNION ALL
-SELECT 3, 'Street' WHERE NOT EXISTS (SELECT 1 FROM public.court_types WHERE type = 'Street')
