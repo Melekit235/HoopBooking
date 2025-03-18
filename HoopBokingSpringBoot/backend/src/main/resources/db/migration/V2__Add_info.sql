@@ -24,10 +24,10 @@ WHERE NOT EXISTS (SELECT 1 FROM public.courts);
 
 INSERT INTO public.court_reviews (court_id, player_id, review_text, review_date)
 SELECT * FROM (VALUES 
-    (1, 1, 'Great court!', '2025-03-01'),
-    (2, 2, 'Needs maintenance', '2025-03-02'),
-    (3, 3, 'Perfect for games', '2025-03-03')
-) AS tmp
+    (1, 1, 'Great court!', '2025-03-01'::DATE),
+    (2, 2, 'Needs maintenance', '2025-03-02'::DATE),
+    (3, 3, 'Perfect for games', '2025-03-03'::DATE)
+) AS tmp(court_id, player_id, review_text, review_date)
 WHERE NOT EXISTS (SELECT 1 FROM public.court_reviews);
 
 INSERT INTO public.favorites (player_id, court_id)
@@ -36,16 +36,16 @@ WHERE NOT EXISTS (SELECT 1 FROM public.favorites);
 
 INSERT INTO public.player_arrivals (player_id, court_id, arrival_date, start_time, end_time)
 SELECT * FROM (VALUES 
-    (1, 1, '2025-03-01', '10:00:00', '12:00:00'),
-    (2, 2, '2025-03-02', '14:00:00', '16:00:00'),
-    (3, 3, '2025-03-03', '18:00:00', '20:00:00')
+    (1, 1, '2025-03-01'::DATE, '10:00:00'::TIME, '12:00:00'::TIME),
+    (2, 2, '2025-03-02'::DATE, '14:00:00'::TIME, '16:00:00'::TIME),
+    (3, 3, '2025-03-03'::DATE, '18:00:00'::TIME, '20:00:00'::TIME)
 ) AS tmp
 WHERE NOT EXISTS (SELECT 1 FROM public.player_arrivals);
 
 INSERT INTO public.player_friends (player_id, friend_id, friendship_date)
 SELECT * FROM (VALUES 
-    (1, 2, '2025-03-01'),
-    (2, 3, '2025-03-02'),
-    (3, 1, '2025-03-03')
+    (1, 2, '2025-03-01'::DATE),
+    (2, 3, '2025-03-02'::DATE),
+    (3, 1, '2025-03-03'::DATE)
 ) AS tmp
 WHERE NOT EXISTS (SELECT 1 FROM public.player_friends);
