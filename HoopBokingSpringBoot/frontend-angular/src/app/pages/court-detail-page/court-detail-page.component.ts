@@ -22,6 +22,15 @@ export class CourtDetailPageComponent implements OnInit {
   endTime: string = '';
   userId: string | null = localStorage.getItem('userId');
 
+  showEditForm: boolean = false;
+  showDeleteConfirmation: boolean = false;
+
+  newCourt = {
+    courtTypeId: '',
+    cityName: '',
+    courtAddress: ''
+  };
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -101,6 +110,34 @@ export class CourtDetailPageComponent implements OnInit {
       }
     });
   }
+
+
+  handleEditCourt() {
+      this.http.put(`http://localhost:8080/court/${this.courtId}`, this.newCourt).subscribe({
+        next: () => {
+          alert('Корт успешно отредактирован!');
+          this.showEditForm = false;
+          this.loadCourtDetails();
+        },
+        error: (err) => {
+          console.error('Ошибка при редактировании:', err);
+          alert('Ошибка при редактировании.');
+        }
+      });
+    }
+
+    handleDeleteCourt() {
+      this.http.delete(`http://localhost:8080/court/${this.courtId}`).subscribe({
+        next: () => {
+          alert('Корт успешно удален!');
+          this.router.navigate(['/courts']);
+        },
+        error: (err) => {
+          console.error('Ошибка при удалении:', err);
+          alert('Ошибка при удалении.');
+        }
+      });
+    }
 
   navigateBack() {
     this.router.navigate(['/courts']);

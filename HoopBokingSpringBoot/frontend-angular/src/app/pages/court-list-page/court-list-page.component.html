@@ -1,33 +1,52 @@
+<!-- src/app/pages/court-list-page/court-list-page.component.html -->
 <div class="court-list-page">
-    <header class="header">
-      <div class="header-content">
-        <h1 class="title">Баскетбольные корты</h1>
-        <a *ngIf="userId; else loginLink" [routerLink]="['/profile', userId]" class="profile-link">Профиль</a>
-        <ng-template #loginLink>
-          <a [routerLink]="['/login']" class="login-link">Войти</a>
-        </ng-template>
+  <header class="header">
+    <div class="header-content">
+      <h1 class="title">Баскетбольные корты</h1>
+      <a *ngIf="userId" [routerLink]="['/profile', userId]" class="profile-link">Профиль</a>
+      <a *ngIf="!userId" routerLink="/login" class="login-link">Войти</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2 class="section-title">Список кортов</h2>
+    <input
+      type="text"
+      placeholder="Поиск по названию, городу или адресу..."
+      class="search-input"
+      [(ngModel)]="searchQuery"
+    />
+    <button class="add-button" (click)="showForm = true">Добавить корт</button>
+
+    <div *ngIf="filteredCourts.length > 0" class="court-grid">
+      <div *ngFor="let court of filteredCourts" [routerLink]="['/court', court.courtId]" class="court-card">
+        <h3 class="court-name">{{ court.courtTypeName }}</h3>
+        <p class="court-location">{{ court.cityName }}, {{ court.courtAddress }}</p>
       </div>
-    </header>
-  
-    <main class="container">
-      <h2 class="section-title">Список кортов</h2>
+    </div>
+    <p *ngIf="filteredCourts.length === 0" class="empty-message">Кортов не найдено.</p>
+  </main>
+
+  <div *ngIf="showForm" class="modal-overlay">
+    <div class="modal">
+      <h2>Добавить корт</h2>
+      <select [(ngModel)]="newCourt.courtTypeId">
+        <option value="1">Indoor</option>
+        <option value="2">Outdoor</option>
+        <option value="3">Street</option>
+      </select>
       <input
         type="text"
-        placeholder="Поиск по названию, городу или адресу..."
-        class="search-input"
-        [(ngModel)]="searchQuery"
+        placeholder="Город"
+        [(ngModel)]="newCourt.cityName"
       />
-  
-      <div *ngIf="filteredCourts.length > 0; else emptyMessage" class="court-grid">
-        <a *ngFor="let court of filteredCourts" [routerLink]="['/court', court.courtId]" class="court-card">
-          <h3 class="court-name">{{ court.courtTypeName }}</h3>
-          <p class="court-location">{{ court.cityName }}, {{ court.courtAddress }}</p>
-        </a>
-      </div>
-  
-      <ng-template #emptyMessage>
-        <p class="empty-message">Кортов не найдено.</p>
-      </ng-template>
-    </main>
+      <input
+        type="text"
+        placeholder="Адрес"
+        [(ngModel)]="newCourt.courtAddress"
+      />
+      <button (click)="handleAddCourt()">Добавить</button>
+      <button (click)="showForm = false">Отмена</button>
+    </div>
   </div>
-  
+</div>

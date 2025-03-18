@@ -10,18 +10,43 @@
       <p><strong>Тип корта:</strong> {{ court.courtTypeName }}</p>
     </div>
 
+    <div class="court-actions">
+      <button class="add-button" (click)="showEditForm = true">Редактировать</button>
+      <button class="add-button" (click)="showDeleteConfirmation = true">Удалить</button>
+    </div>
+
+    <div *ngIf="showEditForm" class="modal-overlay">
+      <div class="modal">
+        <h2>Редактировать корт</h2>
+        <select [(ngModel)]="newCourt.courtTypeId">
+          <option value="1">Indoor</option>
+          <option value="2">Outdoor</option>
+          <option value="3">Street</option>
+        </select>
+        <input type="text" placeholder="Город" [(ngModel)]="newCourt.cityName" />
+        <input type="text" placeholder="Адрес" [(ngModel)]="newCourt.courtAddress" />
+        <button (click)="handleEditCourt()">Сохранить</button>
+        <button (click)="showEditForm = false">Отмена</button>
+      </div>
+    </div>
+
+    <div *ngIf="showDeleteConfirmation" class="modal-overlay">
+      <div class="modal">
+        <h2>Вы уверены, что хотите удалить этот корт?</h2>
+        <button (click)="handleDeleteCourt()">Да, удалить</button>
+        <button (click)="showDeleteConfirmation = false">Отмена</button>
+      </div>
+    </div>
+
     <div class="section">
       <h3>Запись на игру</h3>
       <form (ngSubmit)="handleArrivalSubmit()" class="arrival-form">
         <label>Дата:</label>
         <input type="date" [(ngModel)]="date" name="date" required />
-
         <label>Время с:</label>
         <input type="time" [(ngModel)]="startTime" name="startTime" required />
-
         <label>Время до:</label>
         <input type="time" [(ngModel)]="endTime" name="endTime" required />
-
         <button type="submit">Записаться</button>
       </form>
     </div>
@@ -34,9 +59,7 @@
           <span class="player-time">{{ arrival.startTime }} - {{ arrival.endTime }}</span>
         </li>
       </ul>
-      <ng-template #noArrivals>
-        <p>Нет записавшихся игроков.</p>
-      </ng-template>
+      <ng-template #noArrivals><p>Нет записавшихся игроков.</p></ng-template>
     </div>
 
     <div class="section">
@@ -55,13 +78,9 @@
           <p class="comment-text">{{ review.reviewText }}</p>
         </li>
       </ul>
-      <ng-template #noReviews>
-        <p>Комментариев пока нет.</p>
-      </ng-template>
+      <ng-template #noReviews><p>Комментариев пока нет.</p></ng-template>
     </div>
   </div>
 
-  <ng-template #loading>
-    <p>Загрузка...</p>
-  </ng-template>
+  <ng-template #loading><p>Загрузка...</p></ng-template>
 </div>
